@@ -1,11 +1,3 @@
-/**
- * directorySlider v0.9 - Loads all images in a specified directory and creates a slide show
- * Author: Justin W. Hall
- * http://www.justinwhall.com/directory-jquery-slider/
- *
- * License: GPL v3
- */
-
 (function($){
    var directorySlider = function(element, options)
    {
@@ -16,34 +8,17 @@
        // Merge config settings
        var config = $.extend({
            animation: 'slide',
-           filebase: 'slide_',
+           filebase: 'IMG_',
            extension: 'jpg',
-           speed: 1000,
-           timeout: 4000,
-           directory: null,
-           numslides: null,
-           height: null,
-           width: null
+           speed: 2000,         // transition speed
+           timeout: 10000,      // image slide speed
        }, options || {});
-
-       // set slideshow dimensions if set
-       if (config.height) {
-        $(elem).css('height', config.height);
-       }
-       if (config.width) {
-        $(elem).css('width', config.width);
-       }
 
        $(elem).css('overflow', 'hidden');
 
        // Get slides
        var slides = [],
        slideNumber = 1;
-
-       while(slideNumber <= config.numslides){
-         slides.push('<img src="' + config.directory + config.filebase + slideNumber + '.' + config.extension + '" />');
-         slideNumber++;
-       }
 
        // append slideshow
        // apply slide wrap 1st
