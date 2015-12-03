@@ -19,11 +19,26 @@ For more information and support when I have time or am feeling frisky ===> http
 <div class="directorySlider"></div>
 ```
 
-###Step 3: Call Directory Slider
+###Step 3: Call The Directory Slider
 ```javascript
-$(document).ready(function(){
-  $('.directorySlider').directorySlider();
-});
+        $(document).ready(function(){
+
+            var dir = "/img";
+            var fileextension = ".jpg";
+            $.ajax({
+                //This will retrieve the contents of the folder if the folder is configured as 'browsable'
+                url: dir,
+                success: function (data) {
+                    //List all .png file names in the page
+                    $(data).find("a:contains(" + fileextension + ")").each(function () {
+                        var filename = this.href.replace(window.location.host, "").replace("http://", "");
+                        $(".-slide-wrap").append("<img src='" + dir + filename + "'>");
+                    });
+                }
+            });
+
+          $('.directorySlider').directorySlider();
+        });
 ```
 
 ##Configuration Options
@@ -34,52 +49,15 @@ Type of Animation.
 default: 'fade'
 options: 'fade', 'uncover'
 ```
-**filebase**
-Type base of all files in you directoy. Ex: for files slide_01.jpg, slide_02.jpg and slide_03.jpg the filebase would be 'slide_' and for img_01.png, img_02.png and img_03.png the filebase would be 'img_'.
-```
-default: 'slide_'
-options: string
-```
-**extension**
-The file extension of the files you are using.
-```
-default: 'jpg'
-options: any image format (string)
-```
-**directory**
-The directory of your slides.
-```
-default: null
-options: '/path/to/slides/folder'
-```
-**numslides**
-Number of slides in directory.
-```
-default: null
-options: integer
-```
-###Optional Options
 **speed**
-Slide transition speed in milliseconds.
+Transition speed in milliseconds.
 ```
-default: 1000
+default: 2000       // 2 second transition
 options: integer
 ```
 **timeout**
-Time between slides.
+Slide display time.
 ```
-default: 4000
-options: integer
-```
-**height**
-Height of your slideshow in pixels.
-```
-default: null
-options: integer
-```
-**width**
-Width of your slideshow in pixels.
-```
-default: null
+default: 10000      // 10 second image
 options: integer
 ```
