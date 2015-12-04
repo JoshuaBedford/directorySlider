@@ -18,7 +18,16 @@ Based off of Justin W. Hall's Directory Slider. Added flexibility for filenames 
 <div class="directorySlider"></div>
 ```
 
-###Step 3: Call The Directory Slider
+###Step 3: Beautify it
+Necessary for formatting the image size on incoming images from Ajax call. Add this to your css to limit the filesize to fit on the screen. Note: this is not yet responsive.
+```css
+.directorySlider img{
+  height: 100%;
+  width: 100%;
+}
+```
+
+###Step 4: Call The Directory Slider
 ```javascript
         $(document).ready(function(){
 
